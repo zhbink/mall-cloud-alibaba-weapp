@@ -4,9 +4,14 @@ import java.util.Date;
 import javax.persistence.*;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
-@Data
+@Getter
+@Setter
+@ToString
 @Accessors(chain = true)
 @Table(name = "user")
 public class User {
