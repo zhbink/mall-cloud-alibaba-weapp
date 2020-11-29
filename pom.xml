@@ -10,6 +10,9 @@
 
     <modules>
         <module>mall-mbg</module>
+        <module>mall-user</module>
+        <module>mall-test</module>
+        <module>mall-gateway</module>
     </modules>
 
     <parent>
@@ -40,6 +43,7 @@
     <!-- 子模块继承之后，提供作用：锁定版本+子modlue不用写groupId和version  -->
     <dependencyManagement>
         <dependencies>
+
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
