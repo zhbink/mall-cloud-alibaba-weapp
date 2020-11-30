@@ -2,7 +2,7 @@
  北理工2020级软件工程研究生《软件体系结构原理与方法》课程设计：\
  基于Spring Cloud Alibaba的二手交易小程序
 
- 小组成员：zhbink、
+ 小组成员：zhbink、sux111
 
  Power By `微信小程序`,`JWT`, `Java8`,`Maven`,`SpringBoot`,`SpringCloud`,`MySQL`,`Redis`,`RabbitMQ`,`Docker`
 
