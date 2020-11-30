@@ -13,6 +13,7 @@
         <module>mall-user</module>
         <module>mall-test</module>
         <module>mall-gateway</module>
+
     </modules>
 
     <parent>
@@ -24,6 +25,8 @@
 
     <!-- 统一管理jar包版本 -->
     <properties>
+        <admin-starter-server.version>2.3.1
+        +</admin-starter-server.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -103,6 +106,12 @@
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
                 <optional>true</optional>
+            </dependency>
+            <!--集成SpringBoot Admin监控-->
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-server</artifactId>
+                <version>${admin-starter-server.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
