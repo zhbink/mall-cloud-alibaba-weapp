@@ -11,13 +11,9 @@
     <modules>
         <module>mall-mbg</module>
         <module>mall-user</module>
-        <module>mall-test</module>
         <module>mall-gateway</module>
-<<<<<<< HEAD
 
-=======
         <module>mall-goods</module>
->>>>>>> 7338bc9ac4d52f05a02c8cd58a556d68c5be8390
     </modules>
 
     <parent>
@@ -29,8 +25,7 @@
 
     <!-- 统一管理jar包版本 -->
     <properties>
-        <admin-starter-server.version>2.3.1
-        +</admin-starter-server.version>
+        <admin-starter-server.version>2.3.1</admin-starter-server.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
