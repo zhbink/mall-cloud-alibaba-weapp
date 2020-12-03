@@ -2,6 +2,7 @@
 HELP.md
 target/
 mall-test/
+mall-good/src/main/resources/application.yml
 #!.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
@@ -37,3 +38,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+###goods###
+
+
+###frontend###
+miniprogram/project.config.json
