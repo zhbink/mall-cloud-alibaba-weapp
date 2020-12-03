@@ -1,3 +1,2 @@
 # MyBatis generate files #
-src\main\resources\com\micro\mall\mapper
-src\main\resources\config.properties
+src/main/resources/generator/config.properties
