@@ -70,10 +70,11 @@ public class IndexServiceImpl implements IndexService {
 //        上面代码相当于下面的方法：
 //        List<Category> allCategory = categoryMapper.findMainCategory();
 
+//        Category topCategory = allCategory.get(0);
         //获得第一个主分类下的所有子分类
         Example subCatExample = new Example(Category.class);
         subCatExample.selectProperties("id", "name", "iconUrl");
-        subCatExample.and().andEqualTo("parentId", allCategory.get(0));
+        subCatExample.and().andEqualTo("parentId", allCategory.get(0).getId());
         subCatExample.orderBy("sortOrder").asc();
         List<Category> subCategory = categoryMapper.selectByExample(subCatExample);
 //        List<Category> subCategory = categoryMapper.findSubCategory(topCategory.getId());
