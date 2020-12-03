@@ -23,13 +23,13 @@
         </jdbcConnection>
 
         <!--        生成实体-->
-        <javaModelGenerator targetPackage="com.micro.mall.model"
+        <javaModelGenerator targetPackage="com.micro.mbg.model"
                             targetProject="src/main/java"/>
         <!--        生成mapper.xml-->
-        <sqlMapGenerator targetPackage="com.micro.mall.mapper"
+        <sqlMapGenerator targetPackage="com.micro.mbg.mapper"
                          targetProject="src/main/resources"/>
         <!--        生成mapper接口-->
-        <javaClientGenerator targetPackage="com.micro.mall.mapper"
+        <javaClientGenerator targetPackage="com.micro.mbg.mapper"
                              targetProject="src/main/java"
                              type="XMLMAPPER"/>
         <!--为哪张表生成上面的三类代码-->

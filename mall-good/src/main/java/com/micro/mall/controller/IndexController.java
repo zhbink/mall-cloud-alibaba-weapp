@@ -6,11 +6,13 @@ import com.micro.mall.dto.CommonResult;
 import com.micro.mall.dto.IndexPageVo;
 import com.micro.mall.service.IndexService;
 import com.micro.mbg.mapper.GoodsMapper;
+import com.micro.mbg.model.Category;
 import com.micro.mbg.model.Goods;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -54,6 +56,19 @@ public class IndexController {
 
         return new CommonResult(vo);
     }
+    /**
+     * 分类页, 获取选定主分类下的子分类
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping("/catalog/{id}")
+    public CommonResult subCatalog(@PathVariable("id") int id) {
 
+        List<Category> subCatalog = indexService.getSubCatalogById(id);
+        log.info("浏览分类页,筛选分类 : 展示{}个子分类", subCatalog.size());
+
+        return new CommonResult(subCatalog);
+    }
 
 }
