@@ -10,7 +10,7 @@ module.exports = {
 
   //分类页
   CatalogList: ApiRootUrl + 'goods/catalog/index', //分类目录全部分类数据接口
-  CatalogCurrent: ApiRootUrl + 'catalog', //分类目录当前分类数据接口
+  CatalogCurrent: ApiRootUrl + 'goods/catalog', //分类目录当前分类数据接口
   
   //分类浏览商品
   GoodsCategory: ApiRootUrl + 'goods/category/index', //获得分类数据
