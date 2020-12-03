@@ -1,25 +1,24 @@
-package com.micro.mall.model;
+package com.micro.mbg.model;
 
 import javax.persistence.*;
-
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
-@Data
+@Getter
+@Setter
+@ToString
 @Accessors(chain = true)
-@Table(name = "category")
-public class Category {
+@Table(name = "channel")
+public class Channel {
     @Id
     @GeneratedValue(generator = "JDBC")
     private Integer id;
 
     private String name;
 
-    @Column(name = "parent_id")
-    private Integer parentId;
+    private String url;
 
     @Column(name = "icon_url")
     private String iconUrl;

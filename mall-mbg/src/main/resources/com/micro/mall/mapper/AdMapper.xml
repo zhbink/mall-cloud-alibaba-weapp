@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.micro.mbg.mapper.CategoryMapper">
-  <resultMap id="BaseResultMap" type="com.micro.mbg.model.Category">
+<mapper namespace="com.micro.mbg.mapper.AdMapper">
+  <resultMap id="BaseResultMap" type="com.micro.mbg.model.Ad">
     <!--
       WARNING - @mbg.generated
     -->
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
-    <result column="icon_url" jdbcType="VARCHAR" property="iconUrl" />
+    <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
+    <result column="link" jdbcType="VARCHAR" property="link" />
     <result column="sort_order" jdbcType="INTEGER" property="sortOrder" />
+    <result column="enable" jdbcType="BIT" property="enable" />
+    <result column="create" jdbcType="TIMESTAMP" property="create" />
   </resultMap>
 </mapper>

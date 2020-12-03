@@ -41,4 +41,8 @@ public class CommonResult<T> {
         this(code, message, null);
     }
 
+    public CommonResult(T data) {
+        this(null, null, data);
+    }
+
 }

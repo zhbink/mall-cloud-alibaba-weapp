@@ -1,4 +1,4 @@
-package com.micro.mall.model;
+package com.micro.mbg.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -74,5 +74,5 @@ public class Goods {
     @Column(name = "sold_time")
     private Date soldTime;
 
-    private String desc;
+    private String description;
 }

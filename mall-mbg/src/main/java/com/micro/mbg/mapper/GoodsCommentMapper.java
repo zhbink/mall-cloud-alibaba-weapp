@@ -1,6 +1,6 @@
-package com.micro.mall.mapper;
+package com.micro.mbg.mapper;
 
-import com.micro.mall.model.GoodsComment;
+import com.micro.mbg.model.GoodsComment;
 import tk.mybatis.mapper.common.Mapper;
 
 public interface GoodsCommentMapper extends Mapper<GoodsComment> {

@@ -1,4 +1,4 @@
-package com.micro.mall.model;
+package com.micro.mbg.model;
 
 import java.util.Date;
 import javax.persistence.*;
