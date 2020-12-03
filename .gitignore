@@ -44,3 +44,4 @@ build/
 
 ###frontend###
 miniprogram/project.config.json
+mall-good/src/main/resources/application.yml
