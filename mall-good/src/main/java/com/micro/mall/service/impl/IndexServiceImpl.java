@@ -4,10 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.micro.mall.dto.CatalogPageVo;
 import com.micro.mall.dto.IndexPageVo;
-import com.micro.mbg.mapper.CategoryMapper;
-import com.micro.mbg.mapper.ChannelMapper;
-import com.micro.mbg.mapper.GoodsMapper;
-import com.micro.mbg.mapper.IndexMapper;
+import com.micro.mbg.mapper.*;
 import com.micro.mbg.model.Ad;
 import com.micro.mbg.model.Category;
 import com.micro.mbg.model.Channel;
@@ -24,6 +21,7 @@ import java.util.List;
 @Service
 public class IndexServiceImpl implements IndexService {
 
+    private final AdMapper adMapper;
     private final ChannelMapper channelMapper;
     private final IndexMapper indexMapper;
     private final GoodsMapper goodsMapper;
@@ -32,10 +30,20 @@ public class IndexServiceImpl implements IndexService {
     @Override
     public IndexPageVo getIndex(int page, int size) {
         //广告
-        List<Ad> adList = indexMapper.findAd();
+        Example adExample = new Example(Ad.class);
+        adExample.selectProperties("id","name","imageUrl","link");
+        adExample.and().andEqualTo("enable", true);
+        adExample.orderBy("sortOrder").asc();
+        List<Ad> adList = adMapper.selectByExample(adExample);
+//        List<Ad> adList = indexMapper.findAd();
 
         //分类
-        List<Channel> channelList = indexMapper.findChannel();
+        Example channelExample = new Example(Channel.class);
+        channelExample.selectProperties("id", "name", "url", "iconUrl");
+        channelExample.orderBy("sortOrder").asc();
+        List<Channel> channelList = channelMapper.selectByExample(channelExample);
+//        List<Channel> channelList = indexMapper.findChannel();
+
 
         //推荐商品
         PageInfo<Goods> goodsList = getIndexMore(page, size);
@@ -54,20 +62,20 @@ public class IndexServiceImpl implements IndexService {
     @Override
     public CatalogPageVo getCatalogIndex() {
         //所有主分类
-        Example example = new Example(Category.class);
-        example.selectProperties("id", "name");
-        example.and().andEqualTo("parentId", 0);
-        example.orderBy("sortOrder").asc();
-        List<Category> allCategory = categoryMapper.selectByExample(example);
+        Example mainCatExample = new Example(Category.class);
+        mainCatExample.selectProperties("id", "name");
+        mainCatExample.and().andEqualTo("parentId", 0);
+        mainCatExample.orderBy("sortOrder").asc();
+        List<Category> allCategory = categoryMapper.selectByExample(mainCatExample);
 //        上面代码相当于下面的方法：
 //        List<Category> allCategory = categoryMapper.findMainCategory();
 
         //获得第一个主分类下的所有子分类
-        Example example2 = new Example(Category.class);
-        example2.selectProperties("id", "name", "iconUrl");
-        example2.and().andEqualTo("parentId", allCategory.get(0));
-        example2.orderBy("sortOrder").asc();
-        List<Category> subCategory = categoryMapper.selectByExample(example2);
+        Example subCatExample = new Example(Category.class);
+        subCatExample.selectProperties("id", "name", "iconUrl");
+        subCatExample.and().andEqualTo("parentId", allCategory.get(0));
+        subCatExample.orderBy("sortOrder").asc();
+        List<Category> subCategory = categoryMapper.selectByExample(subCatExample);
 //        List<Category> subCategory = categoryMapper.findSubCategory(topCategory.getId());
         return new CatalogPageVo(allCategory, subCategory);
     }
