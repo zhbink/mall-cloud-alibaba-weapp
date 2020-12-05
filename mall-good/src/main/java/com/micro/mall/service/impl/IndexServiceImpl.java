@@ -62,28 +62,29 @@ public class IndexServiceImpl implements IndexService {
     @Override
     public CatalogPageVo getCatalogIndex() {
         //所有主分类
-//        Example mainCatExample = new Example(Category.class);
-//        mainCatExample.selectProperties("id", "name");
-//        mainCatExample.and().andEqualTo("parentId", 0);
-//        mainCatExample.orderBy("sortOrder").asc();
-//        List<Category> allCategory = categoryMapper.selectByExample(mainCatExample);
+        Example mainCatExample = new Example(Category.class);
+        mainCatExample.selectProperties("id", "name");
+        mainCatExample.and().andEqualTo("parentId", 0);
+        mainCatExample.orderBy("sortOrder").asc();
+        List<Category> allCategory = categoryMapper.selectByExample(mainCatExample);
 //        上面代码相当于下面的方法：
-        List<Category> allCategory = categoryMapper.findMainCategory();
+//        List<Category> allCategory = categoryMapper.findMainCategory();
 
         Category topCategory = allCategory.get(0);
+
         //获得第一个主分类下的所有子分类
-//        Example subCatExample = new Example(Category.class);
-//        subCatExample.selectProperties("id", "name", "iconUrl");
-//        subCatExample.and().andEqualTo("parentId", allCategory.get(0).getId());
-//        subCatExample.orderBy("sortOrder").asc();
-//        List<Category> subCategory = categoryMapper.selectByExample(subCatExample);
-        List<Category> subCategory = categoryMapper.findSubCategory(topCategory.getId());
+        Example subCatExample = new Example(Category.class);
+        subCatExample.selectProperties("id", "name", "iconUrl");
+        subCatExample.and().andEqualTo("parentId", allCategory.get(0).getId());
+        subCatExample.orderBy("sortOrder").asc();
+        List<Category> subCategory = categoryMapper.selectByExample(subCatExample);
+//        List<Category> subCategory = categoryMapper.findSubCategory(topCategory.getId());
         return new CatalogPageVo(allCategory, subCategory);
     }
 
     @Override
     public List<Category> getSubCatalogById(int id) {
-        //主分类=id下的所有子分类
+//        主分类=id下的所有子分类
 //        Category mainCategory = categoryMapper.selectByPrimaryKey(id);
 //
 //        Example subCatExample = new Example(Category.class);

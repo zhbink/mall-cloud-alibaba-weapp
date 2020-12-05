@@ -2,9 +2,7 @@ package com.micro.mall.controller;
 
 import com.micro.mall.dto.*;
 import com.micro.mall.service.GoodsService;
-import com.micro.mbg.model.Goods;
-import com.micro.mbg.model.GoodsComment;
-import com.micro.mbg.model.GoodsGallery;
+import com.micro.mbg.model.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
