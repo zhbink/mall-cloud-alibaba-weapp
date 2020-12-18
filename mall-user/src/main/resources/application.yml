@@ -1,15 +1,18 @@
 server:
   port: 8001
 spring:
-#  datasource:
-#    url:  jdbc:mysql://49.232.161.14:3306/user_service?useUnicode=true&characterEncoding=utf-8
-#    hikari:
-#      username: root
-#      password: 123456
-#      driver-class-name: com.mysql.cj.jdbc.Driver
+  datasource:
+    # 当前数据源操作类型
+    type: com.alibaba.druid.pool.DruidDataSource
+    # mysql驱动包
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/user_service?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: 1234
   application:
     name: user
   cloud:
     nacos:
       discovery:
         server-addr: localhost:8848
+        namespace: 0e79e044-e886-4099-bec7-444afec8c0fc

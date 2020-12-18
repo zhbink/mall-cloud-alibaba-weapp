@@ -3,14 +3,14 @@ package com.micro.mbg.model;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.*;
-
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
-@Data
+@Getter
+@Setter
+@ToString
 @Accessors(chain = true)
 @Table(name = "goods")
 public class Goods {
@@ -22,10 +22,10 @@ public class Goods {
     private Integer categoryId;
 
     @Column(name = "seller_id")
-    private String sellerId;
+    private Integer sellerId;
 
     @Column(name = "buyer_id")
-    private String buyerId;
+    private Integer buyerId;
 
     private String name;
 

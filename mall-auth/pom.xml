@@ -33,7 +33,10 @@
         <dependency>
             <groupId>com.micro.mall</groupId>
             <artifactId>mall-common</artifactId>
-            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.micro.mall</groupId>
+            <artifactId>mall-mbg</artifactId>
         </dependency>
         <dependency>
             <groupId>com.alibaba.cloud</groupId>

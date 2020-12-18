@@ -1,22 +1,27 @@
 package com.micro.mall.controller;
 
 import com.micro.mall.dto.*;
+import com.micro.mall.service.FeignUserService;
 import com.micro.mall.service.GoodsService;
 import com.micro.mbg.model.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/goods")
+//@RequestMapping("/goods")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class GoodsController {
 
     private final GoodsService goodsService;
+    private final FeignUserService feignUserService;
 //    private final UserService userService;
 //    private final BrowseCache browseCache;
 //    private final UserClientHandler userClientHandler;
@@ -59,42 +64,47 @@ public class GoodsController {
 
     }
 
+
     /**
      * 获取商品的详细信息,包括:商品信息,商品图片,商品评论,卖家信息,用户是否收藏了该商品
      *
      * @param goodsId
-     * @param jwtUser
+     * @param
      * @return
      */
-//    @GetMapping("/detail/{goodsId}")
-//    public CommonResult getGoodsDetail(@PathVariable("goodsId") int goodsId,
-//                                                      @JWT JWTUser jwtUser) {
-//        //更新浏览次数
+    @GetMapping("/detail/{goodsId}")
+    public CommonResult getGoodsDetail(@PathVariable("goodsId") int goodsId) {
+        //更新浏览次数
 //        browseCache.add(goodsId);
-//        //获取商品详情
-//        Goods goods = goodsService.getGoodsDetail(goodsId);
-//        //获取买家信息
-//        SimpleUser seller = userClientHandler.getSimpleUser(goods.getSellerId());
-//        if (seller == null) {
-//            log.info("搜索goodsId = 【{}】的详情时出错", goodsId);
-//            return new CommonResult(2001, "无法搜索到商品卖家的信息");
-//        }
+        //获取商品详情
+        Goods goods = goodsService.getGoodsDetail(goodsId);
+        List<GoodsGallery> goodsGallery = goodsService.getGoodsGallery(goodsId);
+
+//        //获取卖家信息
+        SimpleUser seller = feignUserService.getSimpleUser(goods.getSellerId());
+
+        if (seller == null) {
+            log.info("搜索goodsId = 【{}】的详情时出错", goodsId);
+            return new CommonResult(2001, "无法搜索到商品卖家的信息");
+        }
 //        //卖家出售过的商品数
-//        int sellerHistory = goodsService.getSellerHistory(goods.getSellerId());
+        int sellerHistory = goodsService.getSellerHistory(goods.getSellerId());
 //
-//        List<GoodsGallery> goodsGallery = goodsService.getGoodsGallery(goodsId);
-//        List<CommentVo> comment = goodsService.getGoodsComment(goodsId);
+        // TODO
+        // 现在评论都是Null
+        List<CommentVo> comment = goodsService.getGoodsComment(goodsId);
 //
 //        //用户是否收藏
-//        boolean userHasCollect = false;
+        boolean userHasCollect = false;
 //        if (jwtUser != null)
 //            userHasCollect = userService.userHasCollect(jwtUser.getOpenId(), goodsId);
-//
-//        GoodsDetailPageVo vo = new GoodsDetailPageVo(goods, goodsGallery, seller, sellerHistory, comment, userHasCollect);
-//        log.info("浏览商品详情 : 商品id={}，商品名={}", vo.getInfo().getId(), vo.getInfo().getName());
-//
-//        return  new CommonResult(vo);
-//    }
+
+
+        GoodsDetailPageVo vo = new GoodsDetailPageVo(goods, goodsGallery, seller, sellerHistory, comment, userHasCollect);
+        log.info("浏览商品详情 : 商品id={}，商品名={}", vo.getInfo().getId(), vo.getInfo().getName());
+
+        return  new CommonResult(vo);
+    }
 
     /**
      * 获取与id商品相关的商品

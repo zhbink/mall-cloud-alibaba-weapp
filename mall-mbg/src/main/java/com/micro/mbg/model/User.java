@@ -3,15 +3,16 @@ package com.micro.mbg.model;
 import java.util.Date;
 import javax.persistence.*;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import lombok.experimental.Accessors;
 
 @Getter
 @Setter
 @ToString
+@Builder
+@With
+@AllArgsConstructor
+@NoArgsConstructor
 @Accessors(chain = true)
 @Table(name = "user")
 public class User {

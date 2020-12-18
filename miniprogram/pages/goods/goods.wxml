@@ -1,14 +1,34 @@
 <view class="container">
   <!-- 图片 -->
+  <view class="goods-seller-info">
+    <van-row>
+      <van-col span="4">
+        <van-image
+      width="3rem"
+      height="3rem"
+      fit="cover"
+      src="{{seller.avatarUrl}}"
+      class="goods-seller-avatar"
+    />
+      </van-col>
+      <van-col span="20">
+        <view class="goods-index-font" >{{seller.nickName}}</view>
+        <view wx:if="{{!sellerDates}}" class="goods-index-font2">今天来过，发布于{{goods.region}}</view>
+        <view wx:if="{{sellerDates}}" class="goods-index-font2">{{sellerDates}}天前来过，发布于{{goods.region}}</view>
+      </van-col>
+    </van-row>
+  </view>
+  
+  
   <swiper class="goodsimgs" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
     <swiper-item wx:for="{{gallery}}" wx:key="{{item.id}}">
       <image bindtap='preview' data-url="{{item.imgUrl}}" src="{{item.imgUrl}}" mode='aspectFill' background-size="cover"></image>
     </swiper-item>
   </swiper>
-  <view class="location-time">
+  <!-- <view class="location-time">
     <view class="icon time">最后编辑:{{goods.lastEdit}}</view>
     <view class="icon location">地点:{{goods.region}}</view>
-  </view>
+  </view> -->
   <!-- 商品详情 -->
   <view class="goods-info">
     <view class="c">
@@ -18,25 +38,40 @@
         <view wx:if='{{!goods.isSelling}}' class='tag'>已出售</view>
       </view>
       <text wx:if="{{goods.marketPrice}}" class="market-price">原价 : ￥{{goods.marketPrice}}</text>
-
-      <text class="desc">{{goods.desc}}</text>
-
+      <text class="desc">{{goods.description}}</text>
     </view>
   </view>
+  
+  <view class="goodsimgs2" wx:for="{{gallery}}" wx:key="{{item.id}}">
+    <van-image
+      width="710rpx" 
+      height="710rpx" 
+      src="{{item.imgUrl}}"
+    />
+  </view>
+
   <!-- 标签 -->
   <view class="section-nav section-act">
-    <view class="t" wx:if='{{goods.ableExpress||goods.ableMeet||goods.ableSelfTake}}'>
-      <view class="tag r" wx:if="{{goods.ableExpress}}">{{!goods.postage?'包邮':'邮费:'+goods.postage+'元'}}</view>
+    <van-row style="margin-bottom:30rpx;">
+      <van-col span="10">
+        <view class="t" wx:if='{{goods.ableExpress||goods.ableMeet||goods.ableSelfTake}}'>
+          <view class="tag r" wx:if="{{goods.ableExpress}}">{{!goods.postage?'包邮':'邮费:'+goods.postage+'元'}}</view>
 
-      <view class="tag y" wx:if="{{goods.ableExpress}}">支持:邮寄</view>
-      <view class="tag y" wx:if="{{goods.ableMeet}}">支持:同城面交</view>
-      <view class="tag y" wx:if="{{goods.ableSelfTake}}">支持:自提</view>
+          <view class="tag y" wx:if="{{goods.ableExpress}}">支持:邮寄</view>
+          <view class="tag y" wx:if="{{goods.ableMeet}}">支持:同城面交</view>
+          <view class="tag y" wx:if="{{goods.ableSelfTake}}">支持:自提</view>
 
-    </view>
-    <view class="t">
-      <view class="tag">{{goods.wantCount}}人想要</view>
-      <view class="tag">浏览 {{goods.browseCount}}</view>
-    </view>
+        </view>
+      </van-col>
+      <van-col span="10">
+        <view class="t">
+          <view class="tag">{{goods.wantCount}}人想要</view>
+          <view class="tag">浏览 {{goods.browseCount}}</view>
+        </view>
+      </van-col>
+    </van-row>
+    
+    
   </view>
 
   <!-- 卖家信息 -->
@@ -105,7 +140,7 @@
   <view class="related-goods" wx:if="{{relatedGoods.length > 0}}">
     <view class="h">
       <view class="line"></view>
-      <text class="title">大家都在看</text>
+      <text class="title">猜你喜欢</text>
     </view>
     <view class="b">
       <view class="item" wx:for="{{relatedGoods}}" wx:key="{{item.id}}">

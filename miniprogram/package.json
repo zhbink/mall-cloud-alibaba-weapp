@@ -1,5 +1,18 @@
 {
   "dependencies": {
     "@vant/weapp": "^1.6.2"
-  }
+  },
+  "name": "miniprogram",
+  "version": "1.0.0",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

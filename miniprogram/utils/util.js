@@ -22,8 +22,8 @@ function formatNumber(n) {
  * 封封微信的的request
  */
 function request(url, data = {}, method = "GET") {
-  let that = this
-  let token = wx.getStorageSync('token')
+  let that = this;
+  let token = wx.getStorageSync('token');  // token为openid
 
   return new Promise(function(resolve, reject) {
     wx.request({

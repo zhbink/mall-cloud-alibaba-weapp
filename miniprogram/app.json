@@ -79,6 +79,10 @@
     "van-notify": "@vant/weapp/dist/notify/index",
     "van-popup": "@vant/weapp/dist/popup/index",
     "van-calendar": "@vant/weapp/dist/calendar/index",
-    "van-cell": "@vant/weapp/dist/cell/index"
+    "van-cell": "@vant/weapp/dist/cell/index",
+    "van-image": "@vant/weapp/image/index",
+    "van-row": "@vant/weapp/row/index",
+    "van-col": "@vant/weapp/col/index"
+
   }
 }

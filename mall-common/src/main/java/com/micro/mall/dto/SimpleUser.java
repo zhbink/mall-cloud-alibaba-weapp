@@ -2,12 +2,19 @@ package com.micro.mall.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.util.StdDateFormat;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.annotation.security.DenyAll;
 import java.util.Date;
 
 
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class SimpleUser {
     private String openId;
     private String nickName;

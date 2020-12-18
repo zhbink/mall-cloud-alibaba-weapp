@@ -15,7 +15,7 @@ public interface GoodsService {
 
     Goods getGoodsDetail(int goodsId);
 
-    int getSellerHistory(String sellerId);
+    Integer getSellerHistory(int sellerId);
 
     List<GoodsGallery> getGoodsGallery(int goodsId);
 

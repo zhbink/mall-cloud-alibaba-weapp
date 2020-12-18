@@ -34,12 +34,11 @@ Page({
   getGoodsInfo: function() {
     let that = this;
     util.request(api.GoodsDetail + '/' + that.data.id).then(function(res) {
-      if (res.errno === 0) {
-        console.log(res.data)
+      if (res) {
+        console.log(res);
         if (res.data.info.isDelete) {
           util.showErrorToast('商品不存在')
           setTimeout(function callback() {
-
             wx.navigateBack({
               delta: 1
             })
@@ -62,6 +61,7 @@ Page({
           comment: res.data.comment,
           userHasCollect: res.data.userHasCollect
         });
+        console.log(that.data.goods);
 
         if (res.data.userHasCollect == 1) {
           that.setData({
@@ -89,13 +89,14 @@ Page({
   },
   getGoodsRelated: function() {
     let that = this;
-    util.request(api.GoodsRelated + '/' + that.data.id, {
+    // util.request(api.GoodsRelated + '/' + that.data.id, {
+      util.request(api.IndexMore, {
       page: this.data.page,
       size: this.data.size
     }).then(function(res) {
-      if (res.errno === 0) {
+      if (res) {
         that.setData({
-          relatedGoods: that.data.relatedGoods.concat(res.data)
+          relatedGoods: that.data.relatedGoods.concat(res.data.list)
         });
       }
     });

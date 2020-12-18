@@ -1,12 +1,37 @@
 .container {
   padding-bottom: 100rpx;
 }
+.goods-seller-avatar{
+  /* margin:50rpx; */
+}
+.goods-seller-info{
+  width: 750rpx;
+  overflow: hidden;
+  background: #fff;
+  padding: 10rpx;
+  margin-left: 10rpx;
+}
+.goods-index-font{
+  margin-top: 5rpx;
+  font-size: 30rpx;
+}
+.goods-index-font2{
+  font-size: 25rpx;
+  margin-top: 10rpx;
+  color:#666;
 
+}
 /* 商品图片 */
 
 .goodsimgs {
-  width: 750rpx;
-  height: 750rpx;
+  padding: 20rpx;
+  width: 710rpx;
+  height: 710rpx;
+  background: #fff;
+}
+.goodsimgs2 {
+  padding: 20rpx;
+  background: #fff;
 }
 
 .goodsimgs image {

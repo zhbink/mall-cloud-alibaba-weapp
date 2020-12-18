@@ -24,7 +24,8 @@ public interface GoodsMapper extends Mapper<Goods> {
      */
     @Select("select id, `name`, primary_pic_url, price\n" +
             "from goods\n" +
-            "where is_selling = 1 and is_delete = 0\n")
+            "where is_selling = 1 and is_delete = 0\n" +
+            "order by " + popular_score + " desc")
     List<Goods> findSimpleGoods();
 
     /**
@@ -35,7 +36,8 @@ public interface GoodsMapper extends Mapper<Goods> {
     @Select("select id, `name`, primary_pic_url, price\n" +
             "from goods\n" +
             "where category_id = #{cateId}\n" +
-            "and is_selling = 1 and is_delete = 0\n")
+            "and is_selling = 1 and is_delete = 0\n" +
+            "order by " + popular_score + " desc")
     List<Goods> findSimpleGoodsByCateId(@Param("cateId") int cateId);
 
     /**
@@ -50,7 +52,7 @@ public interface GoodsMapper extends Mapper<Goods> {
             "       price,\n" +
             "       market_price,\n" +
             "       primary_pic_url,\n" +
-            "       `description`,\n" +
+            "       `desc`,\n" +
             "       want_count,\n" +
             "       browse_count,\n" +
             "       is_selling,\n" +
@@ -89,7 +91,8 @@ public interface GoodsMapper extends Mapper<Goods> {
             "where category_id = (select category_id from goods where id = #{goodsId})\n" +
             "  and id != #{goodsId}\n" +
             "  and is_selling = 1\n" +
-            "  and is_delete = 0\n")
+            "  and is_delete = 0\n" +
+            "order by " + popular_score + " desc")
     List<Goods> findSimpleGoodsInSameCate(@Param("goodsId") int goodsId);
 
 
@@ -108,7 +111,8 @@ public interface GoodsMapper extends Mapper<Goods> {
             "                      where goods.id = #{goodsId})\n" +
             "  and id != #{goodsId}\n" +
             "  and is_selling = 1\n" +
-            "  and is_delete = 0\n")
+            "  and is_delete = 0\n" +
+            "order by " + popular_score + " desc")
     List<Goods> findSimpleGoodsInSameParentCate(@Param("goodsId") int goodsId);
 
     @Update("update goods set browse_count = browse_count + #{add} where id = #{goodsId}")
@@ -147,7 +151,7 @@ public interface GoodsMapper extends Mapper<Goods> {
             "                   market_price,\n" +
             "                   postage,\n" +
             "                   primary_pic_url,\n" +
-            "                   `description`,\n" +
+            "                   `desc`,\n" +
             "                   region_id,\n" +
             "                   region,\n" +
             "                   able_express,\n" +
@@ -156,7 +160,7 @@ public interface GoodsMapper extends Mapper<Goods> {
             "values (#{categoryId},#{sellerId},#{name},#{price}," +
             "#{marketPrice},#{postage}," +
             "#{primaryPicUrl}," +
-            "#{description}," +
+            "#{desc}," +
             "#{regionId},#{region},#{ableExpress},#{ableMeet},#{ableSelfTake})")
     @SelectKey(resultType = Integer.class, before = false, keyProperty = "id", statement = "SELECT LAST_INSERT_ID()")
     void addGoods(Goods goods);
@@ -197,6 +201,4 @@ public interface GoodsMapper extends Mapper<Goods> {
 
     @Update("update goods set is_selling = false where id = #{goods_id}")
     void deleteGoods(@Param("goods_id") int goodsId);
-
-
 }

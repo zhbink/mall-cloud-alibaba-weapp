@@ -8,8 +8,10 @@ import com.micro.mall.dto.*;
 import com.micro.mbg.model.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.*;
 
@@ -21,6 +23,7 @@ public class GoodsServiceImpl implements GoodsService {
 
     private  final CategoryMapper categoryMapper;
     private  final GoodsMapper goodsMapper;
+    private final GoodsGalleryMapper goodsGalleryMapper;
 //    private  final UserClientHandler userClientHandler;
 
     @Override
@@ -43,20 +46,28 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public Goods getGoodsDetail(int goodsId) {
-        return goodsMapper.findDetailGoodsByGoodsId(goodsId);
+        return goodsMapper.selectByPrimaryKey(goodsId);
     }
 
 
     @Override
-    public int getSellerHistory(String sellerId) {
-        return goodsMapper.getSellerHistory(sellerId);
+    public Integer getSellerHistory(int sellerId) {
+        Example example = new Example(Goods.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("sellerId", sellerId);
+        criteria.andEqualTo("isSelling", false);
+        criteria.andEqualTo("isDelete", false);
+
+        return goodsMapper.selectByExample(example).size();
     }
 
 
     @Override
     public List<GoodsGallery> getGoodsGallery(int goodsId) {
-
-        return goodsMapper.findGalleryByGoodsId(goodsId);
+        Example example = new Example(GoodsGallery.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("goodsId", goodsId);
+        return goodsGalleryMapper.selectByExample(example);
     }
 
     /**

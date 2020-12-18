@@ -7,8 +7,8 @@
     -->
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="category_id" jdbcType="INTEGER" property="categoryId" />
-    <result column="seller_id" jdbcType="VARCHAR" property="sellerId" />
-    <result column="buyer_id" jdbcType="VARCHAR" property="buyerId" />
+    <result column="seller_id" jdbcType="INTEGER" property="sellerId" />
+    <result column="buyer_id" jdbcType="INTEGER" property="buyerId" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="price" jdbcType="DECIMAL" property="price" />
     <result column="market_price" jdbcType="DECIMAL" property="marketPrice" />
@@ -26,6 +26,6 @@
     <result column="post_time" jdbcType="TIMESTAMP" property="postTime" />
     <result column="last_edit" jdbcType="TIMESTAMP" property="lastEdit" />
     <result column="sold_time" jdbcType="TIMESTAMP" property="soldTime" />
-    <result column="desc" jdbcType="LONGVARCHAR" property="desc" />
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
   </resultMap>
 </mapper>

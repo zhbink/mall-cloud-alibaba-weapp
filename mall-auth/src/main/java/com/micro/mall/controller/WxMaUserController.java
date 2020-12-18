@@ -2,6 +2,10 @@ package com.micro.mall.controller;
 
 import com.micro.mall.dto.AuthDTO;
 import com.micro.mall.dto.CommonResult;
+import com.micro.mbg.mapper.UserMapper;
+import com.micro.mbg.model.User;
+import lombok.RequiredArgsConstructor;
+import me.chanjar.weixin.common.annotation.Required;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +19,9 @@ import cn.binarywang.wx.miniapp.bean.WxMaUserInfo;
 import com.micro.mall.config.WxMaConfiguration;
 import com.micro.mall.utils.JsonUtils;
 import me.chanjar.weixin.common.error.WxErrorException;
+import tk.mybatis.mapper.entity.Example;
+
+import java.util.Date;
 
 /**
  * 微信小程序用户接口
@@ -22,9 +29,11 @@ import me.chanjar.weixin.common.error.WxErrorException;
  * @author <a href="https://github.com/binarywang">Binary Wang</a>
  */
 @RestController
+@RequiredArgsConstructor
 //@RequestMapping("/wx/user/{appid}")
 public class WxMaUserController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final UserMapper userMapper;
 
     /**
      * 登陆接口
@@ -58,6 +67,25 @@ public class WxMaUserController {
             String encryptedData = authDTO.getDetail().getEncryptedData();
             String iv = authDTO.getDetail().getIv();
             WxMaUserInfo userInfoBefore = wxService.getUserService().getUserInfo(sessionKey, encryptedData, iv);
+            Example example = new Example(User.class);
+            Example.Criteria criteria = example.createCriteria();
+            criteria.andEqualTo("openId", userInfoBefore.getOpenId());
+            if (userMapper.selectByExample(example).size()==0) {
+                logger.debug("\n【新用户登陆】：将用户写入数据库...");
+                User user = User.builder()
+                        .openId(userInfoBefore.getOpenId())
+                        .nickName(userInfoBefore.getNickName())
+                        .avatarUrl(userInfoBefore.getAvatarUrl())
+                        .gender(Integer.parseInt(userInfoBefore.getGender()))
+                        .country(userInfoBefore.getCountry())
+                        .province(userInfoBefore.getProvince())
+                        .city(userInfoBefore.getCity())
+                        .language(userInfoBefore.getLanguage())
+                        .registerTime(new Date())
+                        .build();
+                userMapper.insertSelective(user);
+                logger.debug("\n【新用户登陆】：数据插入成功。");
+            }
             String userInfo = JsonUtils.toJson(userInfoBefore);
 
             return userInfo;

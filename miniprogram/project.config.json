@@ -37,7 +37,7 @@
     "packNpmRelationList": [
       {
         "packageJsonPath": "./package.json",
-        "miniprogramNpmDistDir": "./node_modules/@vant/weapp/dist"
+        "miniprogramNpmDistDir": "./"
       }
     ],
     "minifyWXSS": true
