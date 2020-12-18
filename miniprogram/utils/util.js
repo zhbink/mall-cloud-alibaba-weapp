@@ -15,7 +15,7 @@ function formatTime(date) {
 
 function formatNumber(n) {
   n = n.toString()
-  return n[1] ? n : '0' + n;
+  return n[1] ? n : '0' + n
 }
 
 /**
@@ -107,17 +107,15 @@ function backendLogin(detail) {
       console.log(code);
       console.log(detail);
       //登录远程服务器
-      //that.request(api.AuthLoginByWeixin, {
-        that.request("api.AuthLoginByWeixin", {
+      that.request(api.AuthLoginByWeixin, {
         code: code,
         detail: detail
       }, 'POST').then(res => {
         if (res) {
-          
           //存储用户信息
           wx.setStorageSync('userInfo', res);
           wx.setStorageSync('token', res.openId);
-          console.log(res);
+
           resolve(detail.userInfo);
         } else {
           reject(res);
