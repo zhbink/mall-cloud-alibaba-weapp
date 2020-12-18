@@ -1,5 +1,5 @@
 ###正式发布时删除
-/dev/data
+/dev/mysq/data
 
 .DS_STORE
 HELP.md
