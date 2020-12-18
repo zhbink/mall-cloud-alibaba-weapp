@@ -1,5 +1,4 @@
 var api = require('../config/api.js');
-var appid='wxe59f8a6e001da64c';
 
 function formatTime(date) {
   var year = date.getFullYear()
@@ -106,16 +105,15 @@ function backendLogin(detail) {
       code = res.code;
     }).then(() => {
       console.log(code);
-      console.log(appid);
       console.log(detail);
       //登录远程服务器
       //that.request(api.AuthLoginByWeixin, {
-        that.request("http://localhost:9401/loginByWeixin", {
+        that.request("api.AuthLoginByWeixin", {
         code: code,
-        appid: appid,
         detail: detail
       }, 'POST').then(res => {
         if (res) {
+          
           //存储用户信息
           wx.setStorageSync('userInfo', res);
           wx.setStorageSync('token', res.openId);
