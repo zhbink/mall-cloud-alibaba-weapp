@@ -1,3 +1,6 @@
+###正式发布时删除
+/dev/data
+
 .DS_STORE
 HELP.md
 target/
