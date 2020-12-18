@@ -6,12 +6,11 @@ var app = getApp();
 Page({
   data: {
     userInfo: {},
-    isLogin: false
+    isLogin: false,
   },
   onLoad: function(options) {
     // 页面初始化 options为页面跳转所带来的参数
     console.log(app.globalData)
-
   },
   onReady: function() {
 
@@ -54,5 +53,15 @@ Page({
         url: '/pages/user/user?userId=' + app.globalData.userInfo.openId,
       })
     }
+  },
+  formatDate(date) {
+    date = new Date(date);
+    return `${date.getMonth() + 1}/${date.getDate()}`;
+  },
+  onConfirm(event) {
+    this.setData({
+      show: false,
+      date: this.formatDate(event.detail),
+    });
   },
 })

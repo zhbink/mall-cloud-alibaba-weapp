@@ -72,5 +72,13 @@
     "downloadFile": 10000
   },
   "debug": true,
-  "sitemapLocation": "sitemap24.json"
+  "sitemapLocation": "sitemap24.json",
+  "usingComponents": {
+    "van-button": "@vant/weapp/dist/button/index",
+    "van-icon": "@vant/weapp/dist/icon/index",
+    "van-notify": "@vant/weapp/dist/notify/index",
+    "van-popup": "@vant/weapp/dist/popup/index",
+    "van-calendar": "@vant/weapp/dist/calendar/index",
+    "van-cell": "@vant/weapp/dist/cell/index"
+  }
 }

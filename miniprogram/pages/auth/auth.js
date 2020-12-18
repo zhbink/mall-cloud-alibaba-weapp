@@ -26,7 +26,7 @@ Page({
         userInfo: userInfo,
         hasUserInfo: true
       })
-      websocket.wsConnect()
+      // websocket.wsConnect()
     });
   },
 

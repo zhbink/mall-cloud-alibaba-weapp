@@ -1,7 +1,7 @@
 // const ApiRootUrl = 'https://01bcd133.ngrok.io/';
 // const WebSocktUrl = 'ws://f5763704.ngrok.io/'
-const ApiRootUrl = 'http://127.0.0.1:8080/';
-const WebSocktUrl = 'ws://127.0.0.1:8805/'
+const ApiRootUrl = 'http://10.20.11.21:8080/';
+const WebSocktUrl = 'ws://127.0.0.1:8805/';
 
 module.exports = {
   //首页

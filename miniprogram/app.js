@@ -46,7 +46,8 @@ App({
     websocket: {
       socketOpen: false,
       changeBadge: true,
-    }
+    },
+    appid: 'wxe59f8a6e001da64c'
 
 
   },
