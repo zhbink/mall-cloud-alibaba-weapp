@@ -45,6 +45,6 @@ build/
 
 
 ###frontend###
-miniprogram/miniprogram_npm/
-miniprogram/node_modules/
-mall-good/src/main/resources/application.yml
+/miniprogram/miniprogram_npm/
+/miniprogram/node_modules/
+/mall-good/src/main/resources/application.yml
