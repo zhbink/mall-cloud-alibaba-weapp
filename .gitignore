@@ -2,7 +2,6 @@
 HELP.md
 target/
 mall-test/
-mall-good/src/main/resources/application.yml
 #!.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
@@ -43,5 +42,5 @@ build/
 
 
 ###frontend###
-miniprogram/project.config.json
-mall-good/src/main/resources/application.yml
+miniprogram/miniprogram_npm/
+miniprogram/node_modules/
