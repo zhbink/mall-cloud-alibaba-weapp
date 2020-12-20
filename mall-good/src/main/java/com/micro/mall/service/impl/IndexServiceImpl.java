@@ -85,15 +85,15 @@ public class IndexServiceImpl implements IndexService {
     @Override
     public List<Category> getSubCatalogById(int id) {
 //        主分类=id下的所有子分类
-//        Category mainCategory = categoryMapper.selectByPrimaryKey(id);
-//
-//        Example subCatExample = new Example(Category.class);
-//        subCatExample.selectProperties("id", "name", "iconUrl");
-//        subCatExample.and().andEqualTo("parentId",id);
-//        subCatExample.orderBy("sortOrder").asc();
-//        List<Category> subCategory = categoryMapper.selectByExample(subCatExample);
-//        return subCategory;
-        return categoryMapper.findSubCategory(id);
+        Category mainCategory = categoryMapper.selectByPrimaryKey(id);
+
+        Example subCatExample = new Example(Category.class);
+        subCatExample.selectProperties("id", "name", "iconUrl");
+        subCatExample.and().andEqualTo("parentId",id);
+        subCatExample.orderBy("sortOrder").asc();
+        List<Category> subCategory = categoryMapper.selectByExample(subCatExample);
+        return subCategory;
+//        return categoryMapper.findSubCategory(id);
     }
 
     @Override
