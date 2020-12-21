@@ -15,7 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @Service
@@ -85,7 +87,7 @@ public class IndexServiceImpl implements IndexService {
     @Override
     public List<Category> getSubCatalogById(int id) {
 //        主分类=id下的所有子分类
-        Category mainCategory = categoryMapper.selectByPrimaryKey(id);
+//        Category mainCategory = categoryMapper.selectByPrimaryKey(id);
 
         Example subCatExample = new Example(Category.class);
         subCatExample.selectProperties("id", "name", "iconUrl");
