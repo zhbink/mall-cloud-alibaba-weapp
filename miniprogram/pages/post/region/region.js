@@ -31,7 +31,7 @@ Page({
   getRegionList() {
     let that = this;
     util.request(api.RegionList + '/' + that.data.parentId).then(function(res) {
-      if (res.errno === 0) {
+      if (res) {
         if (res.data.length > 0) {
           that.setData({
             regionList: res.data

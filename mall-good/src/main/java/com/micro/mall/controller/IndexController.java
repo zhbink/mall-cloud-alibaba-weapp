@@ -27,7 +27,7 @@ public class IndexController {
 
     @GetMapping("/index/index")
     public CommonResult<IndexPageVo> index(@RequestParam(value = "page", defaultValue = "1") int page,
-                                       @RequestParam(value = "size", defaultValue = "4") int size) {
+                                       @RequestParam(value = "size", defaultValue = "8") int size) {
 
 
         IndexPageVo vo = indexService.getIndex(page, size);

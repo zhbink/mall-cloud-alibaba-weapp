@@ -11,7 +11,7 @@
 
 
     <view class='img'>
-      <view wx:for="{{imgList}}" wx:key="{{index}}">
+      <view wx:for="{{imgList}}" wx:key="index">
 
         <view wx:if="{{imgList[index] == 'false'}}">
           <!-- 上传中 -->
@@ -35,11 +35,22 @@
       </view>
 
     </view>
+
     <navigator url="../region/region" class='location'>
       <view class="icon" wx:if='{{!regionId}}'>选择发货地点</view>
       <view class="icon" wx:else>{{region}}</view>
     </navigator>
-
+        <!-- <van-cell title="展示弹出层" bindtap="selectAreaField" />
+      <van-popup
+        show="{{ showAreaPicker }}"
+        position="bottom"
+        custom-style="height: 40%;"
+        bind:close="closeAreaField"
+      >
+        <van-area
+          area-list="{{ areaList }} "
+        />
+      </van-popup> -->
   </view>
 
 

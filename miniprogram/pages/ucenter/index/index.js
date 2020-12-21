@@ -16,18 +16,25 @@ Page({
 
   },
   onShow: function() {
-
+    let that = this;
     let userInfo = wx.getStorageSync('userInfo');
     let token = wx.getStorageSync('token');
 
   
     // 页面显示
     if (userInfo && token) {
+      let that = this;
+      util.request(api.GetUserId+'/'+token).then(function(res) {
+        if (res) {
+          wx.setStorageSync('userId', res);
+        }
+      });
       app.globalData.userInfo = userInfo;
       app.globalData.token = token;
       this.setData({
         isLogin: true
       });
+      // console.log(wx.getStorageSync('userId'));
     }
 
     this.setData({
@@ -43,7 +50,6 @@ Page({
     // 页面关闭
   },
   goLogin() {
-
     if (!this.data.isLogin) {
       wx.navigateTo({
         url: '/pages/auth/auth'

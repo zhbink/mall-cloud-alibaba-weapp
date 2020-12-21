@@ -61,36 +61,38 @@
   flex-flow: row nowrap;
   align-items: center;
   justify-content: center;
-  height: 130rpx;
+  height: 100rpx;
 }
 
 .a-section .h .txt {
   padding-right: 30rpx;
   background-size: 16.656rpx 27rpx;
   display: inline-block;
-  height: 36rpx;
-  font-size: 33rpx;
-  line-height: 36rpx;
+  height: 30rpx;
+  font-size:28rpx;
+  line-height: 30rpx;
 }
 
 .a-rec .b {
   width: 750rpx;
   height: auto;
   overflow: hidden;
-  padding: 0 31rpx 45rpx 31rpx;
+  padding: 0 10rpx 45rpx 10rpx;
 }
 
 .a-rec .b .item {
   float: left;
-  width: 302rpx;
+  width: 350rpx;
   margin-top: 10rpx;
-  margin-left: 21rpx;
-  margin-right: 21rpx;
+  margin-left: 10rpx;
+  margin-right: 5rpx;
+  box-shadow: 0 3rpx 5rpx -3rpx rgba(0,0,0,.5);
 }
 
 .a-rec .b .img {
-  width: 302rpx;
-  height: 302rpx;
+  width: 350rpx;
+  height: 350rpx;
+  border-radius: 5rpx;
 }
 
 .a-rec .b .name {

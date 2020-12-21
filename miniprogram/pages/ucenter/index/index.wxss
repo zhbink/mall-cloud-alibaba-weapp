@@ -67,8 +67,8 @@ page {
   float: left;
   width: 33.33333%;
   height: 187.5rpx;
-  border-right: 1px solid rgba(0, 0, 0, 0.15);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  border-right: 1px solid rgba(121, 121, 121, 0.15);
+  border-bottom: 1px solid rgba(121, 121, 121, 0.15);
   text-align: center;
 }
 
@@ -98,37 +98,37 @@ page {
 }
 
 .user-menu .icon.coin {
-  background: url(https://i.postimg.cc/7hwNXXzv/coin.png);
+  background: url(https://zhb1nk.oss-cn-beijing.aliyuncs.com/weapp/%E9%92%B1.png);
   background-size: 52.803rpx;
 }
 
 .user-menu .icon.publish {
-  background: url(https://i.postimg.cc/ncd1Y4c5/demostration.png);
+  background: url(https://zhb1nk.oss-cn-beijing.aliyuncs.com/weapp/%E5%96%87%E5%8F%AD.png);
   background-size: 52.803rpx;
 }
 
 .user-menu .icon.download {
-  background: url(https://i.postimg.cc/qBxwgVfp/download.png);
+  background: url(https://zhb1nk.oss-cn-beijing.aliyuncs.com/weapp/%E4%B8%8A%E4%BC%A0.png);
   background-size: 52.803rpx;
 }
 
 .user-menu .icon.upload {
-  background: url(https://i.postimg.cc/J0x5FJ3s/outbox.png);
+  background: url(https://zhb1nk.oss-cn-beijing.aliyuncs.com/weapp/%E9%92%B1%20%281%29.png);
   background-size: 52.803rpx;
 }
 
 .user-menu .icon.star {
-  background: url(https://i.postimg.cc/Sxt225vJ/star.png);
+  background: url(https://zhb1nk.oss-cn-beijing.aliyuncs.com/weapp/%E6%94%B6%E8%97%8F.png);
   background-size: 52.803rpx;
 }
 
 .user-menu .icon.map {
-  background: url(https://i.postimg.cc/rpYmfptq/maps-and-flags.png);
+  background: url(https://zhb1nk.oss-cn-beijing.aliyuncs.com/weapp/%E5%9C%B0%E5%9B%BE.png);
   background-size: 52.803rpx;
 }
 
 .user-menu .icon.embarrass {
-  background: url(https://i.postimg.cc/8PBzq4rK/embarrass.png);
+  background: url(https://zhb1nk.oss-cn-beijing.aliyuncs.com/weapp/%E5%9C%B0%E5%9B%BE.png);
   background-size: 52.803rpx;
 }
 

@@ -52,12 +52,7 @@
         <text class="txt">地址管理</text>
       </navigator>
     </view>
-    <view class="item item-bottom">
-      <navigator url="/pages/ucenter/about/about" class="a">
-        <text class="icon embarrass"></text>
-        <text class="txt">关于作者</text>
-      </navigator>
-    </view>
+
   </view>
 
 </view>

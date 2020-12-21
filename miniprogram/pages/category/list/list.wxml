@@ -11,10 +11,10 @@
 
     <view class="cate-item">
         <view class="b">
-            <navigator class="item {{(iindex + 1) % 2 == 0 ? 'item-b' : ''}}"   url="/pages/goods/goods?id={{iitem.id}}" wx:for="{{goodsList}}" wx:for-item="iitem" wx:for-index="iindex" wx:key="{{index}}">
-                <image class="img" src="{{iitem.primaryPicUrl}}" background-size="cover"></image>
-                <text class="name">{{iitem.name}}</text>
-                <text class="price">￥{{iitem.price}}</text>
+            <navigator class="item {{(index + 1) % 2 == 0 ? 'item-b' : ''}}"   url="/pages/goods/goods?id={{item.id}}" wx:for="{{goodsList}}" wx:for-item="item" wx:for-index="index" wx:key="{{index}}">
+                <image class="img" src="{{item.primaryPicUrl}}" background-size="cover"></image>
+                <text class="name">{{item.name}}</text>
+                <text class="price">￥{{item.price}}</text>
             </navigator>
         </view>
     </view>

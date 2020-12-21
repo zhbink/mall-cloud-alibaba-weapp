@@ -12,4 +12,8 @@ public interface FeignUserService {
     @GetMapping("/get/simpleuser/{id}")
     SimpleUser getSimpleUser(@PathVariable Integer id);
 
+    @GetMapping("getid/{openId}")
+    Integer getUserIdFromOpenId(@PathVariable String openId);
+
+
 }

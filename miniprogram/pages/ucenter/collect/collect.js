@@ -12,10 +12,11 @@ Page({
   getCollectList() {
     let that = this;
     util.request(api.CollectList, {
+      userId: wx.getStorageSync('userId'),
       page: this.data.page,
       size: this.data.size
     }).then(function (res) {
-      if (res.errno === 0) {
+      if (res) {
         console.log(res.data);
         that.setData({
           collectList: that.data.collectList.concat(res.data),

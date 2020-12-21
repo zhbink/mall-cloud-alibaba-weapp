@@ -93,7 +93,8 @@ page {
   left: 0;
   border-radius: 4rpx;
   height: 192rpx;
-  width: 100%;
+  padding-right: 130rpx;
+  /* width: 100%; */
 }
 
 .catalog .hd {

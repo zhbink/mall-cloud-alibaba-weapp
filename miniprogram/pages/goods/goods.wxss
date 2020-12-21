@@ -38,6 +38,22 @@
   width: 750rpx;
   height: 750rpx;
 }
+.deleteButtonA{
+  
+  /* width: 100%; */
+  margin-top: 100rpx;
+  height: 60rpx;
+  margin-left : 20rpx;
+}
+.deleteButtonB{
+  
+  /* width: 100%; */
+  margin-top: 100rpx;
+  height: 60rpx;
+  margin-left : 40rpx;
+  background: red;
+}
+
 
 /* 最后编辑,地点 */
 

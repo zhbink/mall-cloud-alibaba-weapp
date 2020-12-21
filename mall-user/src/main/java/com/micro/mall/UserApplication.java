@@ -13,6 +13,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 @SpringBootApplication
 @MapperScan("com.micro.mbg")
 @EnableDiscoveryClient
+@EnableFeignClients
 public class UserApplication {
     public static void main(String[] args) {
         SpringApplication.run(UserApplication.class, args);

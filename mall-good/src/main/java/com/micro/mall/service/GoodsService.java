@@ -23,5 +23,5 @@ public interface GoodsService {
 
     List<CommentVo> getGoodsComment(int goodsId);
 
-    void addComment(int goodsId, String userId, int replyCommentId, String replyUserId, String content);
+    void addComment(int goodsId, int userId, int replyCommentId, String replyUserId, String content);
 }

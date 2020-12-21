@@ -13,8 +13,8 @@
       </van-col>
       <van-col span="20">
         <view class="goods-index-font" >{{seller.nickName}}</view>
-        <view wx:if="{{!sellerDates}}" class="goods-index-font2">今天来过，发布于{{goods.region}}</view>
-        <view wx:if="{{sellerDates}}" class="goods-index-font2">{{sellerDates}}天前来过，发布于{{goods.region}}</view>
+        <view wx:if="{{!sellerDates}}" class="goods-index-font2">发布于今天，{{goods.region}}</view>
+        <view wx:if="{{sellerDates}}" class="goods-index-font2">发布于{{sellerDates}}天前，{{goods.region}}</view>
       </van-col>
     </van-row>
   </view>
@@ -173,14 +173,33 @@
 </view>
 
 <!-- 删除弹框 -->
-<view class="pop-box" hidden="{{!openDelete}}">
+<!-- <view class="pop-box" hidden="{{!openDelete}}">
   <view class="delete-pop ">
     <view class="close" bindtap="closeDelete">
       <image class="icon" src="/static/images/clear_input.png"></image>
     </view>
+    
     <button class='delete-btn' bindtap="deleteGoods">确定删除</button>
   </view>
-</view>
+</view> -->
+<!-- <van-popup
+  show="{{ openDelete }}"
+  closeable
+  position="bottom"
+  custom-style="height: 20%"
+  bind:close="onClose"
+>
+是否删除？
+<van-rol gutter="3">
+  <van-col span="10">
+    <button class="deleteButtonA">取消</button>
+  </van-col>
+  <van-col span="10">
+    <button type="danger" class="deleteButtonB">删除</button>
+  </van-col>
+</van-rol>
+
+</van-popup> -->
 
 <!-- 底部按钮 -->
 <view class="bottom-btn">
@@ -193,7 +212,7 @@
     留言
   </view>
   <view class="r" wx:if='{{!goods.isSelling}}' bindtap="addToCart">该商品已出售</view>
-  <view class="r" wx:elif="{{isSeller && !goods.isDelete && goods.isSelling}}" bindtap="switchDeletetPop">删除该商品</view>
+  <view class="r" wx:elif="{{isSeller && !goods.isDelete && goods.isSelling}}" bindtap="deleteGoods">删除该商品</view>
   <view class="r" wx:else bindtap="want">想要</view>
 
 </view>

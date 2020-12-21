@@ -40,16 +40,14 @@ App({
     userInfo: {
       openId: '',
       nickName: 'Hi,游客',
-      avatarUrl: 'https://i.postimg.cc/RVbDV5fN/anonymous.png'
+      avatarUrl: 'https://zhb1nk.oss-cn-beijing.aliyuncs.com/weapp/u%3D2860640912%2C1833965317%26fm%3D26%26gp%3D0.jpg'
     },
     token: '',
     websocket: {
       socketOpen: false,
       changeBadge: true,
     },
-    appid: 'wxe59f8a6e001da64c'
-
-
+    appid: 'wxe59f8a6e001da64c',
   },
   testData: {
     userInfo: {

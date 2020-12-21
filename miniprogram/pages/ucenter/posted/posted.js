@@ -7,16 +7,21 @@ Page({
   data: {
     postedList: [],
     page: 1,
-    size: 10
+    size: 10,
+    userId: 0
   },
   getPostedList() {
     let that = this;
     util.request(api.PostedList, {
+      userId: this.data.userId,
       page: this.data.page,
       size: this.data.size
     }).then(function (res) {
-      if (res.errno === 0) {
-        console.log(res.data);
+      if (res) {
+        console.log(res);
+        for(let item of res.data) {
+          item.lastEdit = item.lastEdit.substr(0,19).replace('T', ' ');
+        }
         that.setData({
           postedList: that.data.postedList.concat(res.data),
         });
@@ -24,6 +29,9 @@ Page({
     });
   },
   onLoad: function (options) {
+    this.setData({
+      userId: wx.getStorageSync('userId')
+    })
     this.getPostedList();
   },
   onReady: function () {

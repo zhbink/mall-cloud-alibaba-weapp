@@ -12,11 +12,14 @@ Page({
   getSoldList() {
     let that = this;
     util.request(api.SoldList, {
+      userId: wx.getStorageSync('userId'),
       page: this.data.page,
       size: this.data.size
     }).then(function (res) {
-      if (res.errno === 0) {
-        console.log(res.data);
+      if (res) {
+        for(let item of res.data) {
+          item.soldTime = item.soldTime.substr(0,19).replace('T', ' ');
+        }
         that.setData({
           soldList: that.data.soldList.concat(res.data),
         });

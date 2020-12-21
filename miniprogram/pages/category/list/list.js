@@ -40,7 +40,9 @@ Page({
     util.request(api.GoodsCategory + "/" + this.data.id)
       .then(function(res) {
 
-        if (res.errno == 0) {
+        if (res) {
+          console.log("res:");
+          console.log(res);
           that.setData({
             navList: res.data.brotherCategory,
             goodsList: res.data.goodsList

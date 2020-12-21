@@ -23,7 +23,7 @@
     <view class="h">
       <view>
         <navigator url="../newGoods/newGoods">
-          <text class="txt">为你推荐</text>
+          <text class="txt">为你推荐👀</text>
         </navigator>
       </view>
     </view>

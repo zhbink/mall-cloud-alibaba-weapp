@@ -25,7 +25,7 @@
   "window": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "仿闲鱼交易平台",
+    "navigationBarTitleText": "二手商品交易系统",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": false
   },
@@ -49,7 +49,7 @@
       },
       {
         "pagePath": "pages/post/nav2post/nav2post",
-        "iconPath": "static/images/ic_menu_add_nor.png",
+        "iconPath": "static/images/ic_menu_add_nor1.png",
         "selectedIconPath": "static/images/ic_menu_add_nor.png",
         "text": "发布"
       },
@@ -78,11 +78,10 @@
     "van-icon": "@vant/weapp/dist/icon/index",
     "van-notify": "@vant/weapp/dist/notify/index",
     "van-popup": "@vant/weapp/dist/popup/index",
-    "van-calendar": "@vant/weapp/dist/calendar/index",
     "van-cell": "@vant/weapp/dist/cell/index",
-    "van-image": "@vant/weapp/image/index",
-    "van-row": "@vant/weapp/row/index",
-    "van-col": "@vant/weapp/col/index"
+    "van-image": "@vant/weapp/dist/image/index",
+    "van-row": "@vant/weapp/dist/row/index",
+    "van-col": "@vant/weapp/dist/col/index"
 
   }
 }

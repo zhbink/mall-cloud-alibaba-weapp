@@ -31,7 +31,7 @@ Page({
   getSearchKeyword() {
     let that = this;
     util.request(api.SearchIndex).then(function(res) {
-      if (res.errno === 0) {
+      if (res) {
         that.setData({
           historyKeyword: res.data.historyKeywordList,
           hotKeyword: res.data.hotKeywordList
@@ -89,7 +89,7 @@ Page({
       page: this.data.page,
       size: this.data.size
     }).then(function(res) {
-      if (res.errno === 0) {
+      if (res) {
         that.setData({
           searchStatus: true,
           categoryFilter: false,

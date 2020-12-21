@@ -37,6 +37,7 @@ Page({
     })
     util.request(api.CatalogCurrent + "/" + id)
       .then(function(res) {
+        console.log(res);
         that.setData({
           currentCategory: res.data,
         });
@@ -62,4 +63,5 @@ Page({
     }
     this.getCurrentCategory(event.currentTarget.dataset.id, event.currentTarget.dataset.name);
   }
+  
 })

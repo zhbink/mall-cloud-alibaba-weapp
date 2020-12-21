@@ -2,6 +2,11 @@ var app = getApp();
 var util = require('../../../utils/util.js');
 var api = require('../../../config/api.js');
 var user = require('../../../services/user.js');
+var uploadImage = require('./uploadFile.js')
+
+const env = require('config.js');
+const base64 = require('base64.js');
+
 Page({
   data: {
     desc: '',
@@ -19,17 +24,19 @@ Page({
     cateName: '',
     imgList: [],
     tmpImgList:[],
+    userOpenId: wx.getStorageSync('token'),
+
   },
   onLoad: function(options) {
     var that = this;
-    user.checkLoginAndNav()
-
+    user.checkLoginAndNav();
   },
   onClose() {
     wx.navigateBack({
       delta: 1
     });
   },
+
   addImage() {
     let that = this;
     let remain = 10 - this.data.imgList.length;
@@ -69,47 +76,39 @@ Page({
       fail(res) {
         console.log(res);
       },
-
-
-
-
-
     })
+  },
+  
+  //上传图片前检验图片格式
+  beforeAvatarUpload(file) {
+    const isJPG = file.type === "image/jpeg";
+    const isLt2M = file.size / 1024 / 1024 < 2;
+    const isPNG = file.type === "image/png";
+    if (!isJPG && !isPNG) {
+      this.$message.error("上传图片只能是 JPG和PNG 格式!");
+      return false;
+    }
+    if (!isLt2M) {
+      this.$message.error("上传图片大小不能超过 2MB!");
+      return false;
+    }
   },
   uploadFile(url, i) {
     let that = this;
-    wx.uploadFile({
-      url: 'https://sm.ms/api/upload',
-      filePath: url,
-      name: 'smfile',
-      success(res) {
-        const data = JSON.parse(res.data);
-
-        console.log(data)
-        if (data.code == 'success') {
-          console.log("图片上传成功, " + data.data.url)
-          that.data.imgList[i] = data.data.url
-          that.setData({
-            imgList: that.data.imgList
-          })
-          // that.onLoad();
-
-        } else if (data.code == 'error' && data.msg == 'File is too large.') {
-          console.log("上传失败,图片太大")
-          that.compressImg(url, i)
-        }
+    uploadImage(url, 'cbb/',
+      function (result) {
+        console.log("======上传成功图片地址为：", result);
+        wx.hideLoading();
+        that.data.imgList[i] = result
+        that.setData({
+          imgList: that.data.imgList
+        })
+        console.log(that.data.imgList);
+      }, function (result) {
+        console.log("======上传失败======", result);
+        wx.hideLoading()
       }
-    })
-
-    //模拟上传
-    // setTimeout(function goback() {
-    //   console.log("图片上传成功, " + url)
-    //   that.data.imgList[i] = url
-    //   that.setData({
-    //     imgList: that.data.imgList
-    //   })
-    // }, 2000)
-
+    )
   },
   compressImg(url, i) {
     let that = this
@@ -138,6 +137,7 @@ Page({
     })
 
   },
+
   preview(event){
     let url = event.currentTarget.dataset.url
     let urls = [];
@@ -222,7 +222,7 @@ Page({
     user.checkLoginAndNav().then(() => {
       util.request(api.GoodsPost, {
         name: this.data.title,
-        desc: this.data.desc,
+        description: this.data.desc,
         regionId: this.data.regionId,
         region: this.data.region,
         categoryId: this.data.cateId,
@@ -233,8 +233,9 @@ Page({
         ableMeet: this.data.ableMeet,
         ableExpress: this.data.ableExpress,
         images: this.data.imgList,
+        userId: wx.getStorageSync("userId")
       }, 'POST').then(function(res) {
-        if (res.errno === 0) {
+        if (res) {
 
           setTimeout(function goback() {
             wx.reLaunch({

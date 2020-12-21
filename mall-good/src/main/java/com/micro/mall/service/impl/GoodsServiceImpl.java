@@ -40,7 +40,10 @@ public class GoodsServiceImpl implements GoodsService {
     public List<Goods> getGoodsByCateId(int id, int page, int size) {
         //紧跟在这个方法后的第一个MyBatis 查询方法会被进行分页
         PageHelper.startPage(page, size);
-        List<Goods> goodsList = goodsMapper.findSimpleGoodsByCateId(id);
+        Example example = new Example(Goods.class);
+        example.createCriteria().andEqualTo("categoryId", id).andEqualTo("isSelling", 1)
+                .andEqualTo("isDelete", 0);
+        List<Goods> goodsList = goodsMapper.selectByExample(example);
         return goodsList;
     }
 
@@ -134,7 +137,7 @@ public class GoodsServiceImpl implements GoodsService {
 //    }
 
     @Override
-    public void addComment(int goodsId, String userId, int replyCommentId, String replyUserId, String content) {
+    public void addComment(int goodsId, int userId, int replyCommentId, String replyUserId, String content) {
         goodsMapper.addComment(goodsId, userId, replyCommentId, replyUserId, content);
     }
 

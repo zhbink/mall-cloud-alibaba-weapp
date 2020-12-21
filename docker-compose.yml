@@ -1,4 +1,4 @@
-version: "3.3"
+version: "3"
 services:
 
   mysql:
@@ -17,6 +17,7 @@ services:
       #    - ./dev/mysql/dump/1_schema.sql:/docker-entrypoint-initdb.d/1_schema.sql  #只导入schema
       - ./dev/mysql/dump:/docker-entrypoint-initdb.d  #schema+所有测试数据
     restart: always
+
   nacos:
     hostname: nacos
     restart: always
@@ -27,24 +28,25 @@ services:
     environment:
       - PREFER_HOST_MODE=hostname
       - MODE=standalone
-  # mall-goods:
-  #   build: ./mall-goods
-  #   container_name: mall-goods
-  #   restart: always
-  #   environment:
-  #     - spring.cloud.nacos.discovery.server-addr=nacos:8848
-  #   depends_on:
-  #   - nacos
-  #   - mysql
-  # mall-gateway:
-  #   build: ./mall-gateway
-  #   container_name: mall-gateway
-  #   restart: always
-  #   environment:
-  #     - spring.cloud.nacos.discovery.server-addr=nacos:8848
-  #     # - spring.cloud.nacos.config.server-addr=nacos-server:8848
-  #   depends_on:
-  #     - nacos
-  #     - mysql
+
+#  mall-good:
+#    build: ./mall-good
+#    container_name: mall-good
+##     restart: always
+#    environment:
+#      - spring.cloud.nacos.discovery.server-addr=nacos:8848
+#    depends_on:
+#      - nacos
+#      - mysql
+#   mall-gateway:
+#     build: ./mall-gateway
+#     container_name: mall-gateway
+#     restart: always
+#     environment:
+#       - spring.cloud.nacos.discovery.server-addr=nacos:8848
+#       # - spring.cloud.nacos.config.server-addr=nacos-server:8848
+#     depends_on:
+#       - nacos
+#       - mysql
 volumes:
   mysql-data: {}

@@ -10,13 +10,13 @@ Page({
     channel: [],
     indexGoods: [],
     page: 1,
-    size: 4,
-    total: 4,
+    size: 8,
+    total: 8,
   },
   onShareAppMessage: function() {
     return {
-      title: '古早交易平台',
-      desc: '一款开源仿闲鱼交易平台！',
+      title: '二手交易平台',
+      desc: '',
       path: '/pages/index/index'
     }
   },
@@ -52,6 +52,7 @@ Page({
   onLoad: function(options) {
 
     this.getIndexData();
+    wx.getStorageSync('userInfo');
 
   },
   onReady: function() {
@@ -77,7 +78,14 @@ Page({
 
   },
   onReachBottom: function() {
+    let that = this;
+
+    
     if (this.data.total > this.data.page * this.data.size) {
+
+        wx.showLoading({
+          title: '努力加载中...',
+        });
     console.log("拉到底")
     this.setData({
       page: this.data.page + 1
@@ -87,5 +95,7 @@ Page({
     else{
       console.log("没有数据了");
     }
+    wx.hideLoading();
   },
+    
 })

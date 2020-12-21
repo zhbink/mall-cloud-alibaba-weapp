@@ -138,7 +138,7 @@ public interface GoodsMapper extends Mapper<Goods> {
     @Insert("insert into goods_comment (goods_id, user_id, reply_comment_id, reply_user_id, content)\n" +
             "values (#{goods_id}, #{user_id}, #{reply_comment_id}, #{reply_user_id}, #{content})")
     void addComment(@Param("goods_id") int goodsId,
-                    @Param("user_id") String userId,
+                    @Param("user_id") int userId,
                     @Param("reply_comment_id") int replyCommentId,
                     @Param("reply_user_id") String replyUserId,
                     @Param("content") String content);
@@ -151,7 +151,7 @@ public interface GoodsMapper extends Mapper<Goods> {
             "                   market_price,\n" +
             "                   postage,\n" +
             "                   primary_pic_url,\n" +
-            "                   `desc`,\n" +
+            "                   description,\n" +
             "                   region_id,\n" +
             "                   region,\n" +
             "                   able_express,\n" +
@@ -160,7 +160,7 @@ public interface GoodsMapper extends Mapper<Goods> {
             "values (#{categoryId},#{sellerId},#{name},#{price}," +
             "#{marketPrice},#{postage}," +
             "#{primaryPicUrl}," +
-            "#{desc}," +
+            "#{description}," +
             "#{regionId},#{region},#{ableExpress},#{ableMeet},#{ableSelfTake})")
     @SelectKey(resultType = Integer.class, before = false, keyProperty = "id", statement = "SELECT LAST_INSERT_ID()")
     void addGoods(Goods goods);

@@ -32,7 +32,7 @@ Page({
   getCateList() {
     let that = this;
     util.request(api.PostCateList + '/' + that.data.parentId).then(function(res) {
-      if (res.errno === 0) {
+      if (res) {
         if (res.data.length > 0) {
           that.setData({
             cateList: res.data

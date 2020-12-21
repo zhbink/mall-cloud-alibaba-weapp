@@ -1,6 +1,6 @@
 // const ApiRootUrl = 'https://01bcd133.ngrok.io/';
 // const WebSocktUrl = 'ws://f5763704.ngrok.io/'
-const ApiRootUrl = 'http://10.20.11.21:8080/';
+const ApiRootUrl = 'http://10.20.15.159:8080/';
 const WebSocktUrl = 'ws://127.0.0.1:8805/';
 
 module.exports = {
@@ -22,25 +22,26 @@ module.exports = {
   CommentPost: ApiRootUrl + 'goods/comment/post', //发表评论
 
   //搜索
-  SearchIndex: ApiRootUrl + 'search/index', //搜索页面数据
-  SearchResult: ApiRootUrl + 'search/result', //搜索结果
+  SearchIndex: ApiRootUrl + 'goods/search/index', //搜索页面数据
+  SearchResult: ApiRootUrl + 'goods/search/result', //搜索结果
   SearchClearHistory: ApiRootUrl + 'search/clearhistory', //清空搜索历史
 
   //商品发布
-  GoodsPost: ApiRootUrl + 'post/post', //发布商品
-  GoodsDelete: ApiRootUrl + 'post/delete', //删除自己发布的商品
-  RegionList: ApiRootUrl + 'post/region', //获取区域列表
-  PostCateList: ApiRootUrl + 'post/category', //发布商品时选择分类
+  GoodsPost: ApiRootUrl + 'goods/post/post', //发布商品
+  GoodsDelete: ApiRootUrl + 'goods/post/delete', //删除自己发布的商品
+  RegionList: ApiRootUrl + 'goods/post/region', //获取区域列表
+  PostCateList: ApiRootUrl + 'goods/post/category', //发布商品时选择分类
 
   //用户相关
-  CollectList: ApiRootUrl + 'goodsUser/collect', //收藏列表
-  CollectAddOrDelete: ApiRootUrl + 'goodsUser/collect/addordelete', //添加或取消收藏
-  PostedList: ApiRootUrl + 'goodsUser/posted', //发布的商品
-  BoughtList: ApiRootUrl + 'goodsUser/bought', //买过的商品
-  SoldList: ApiRootUrl + 'goodsUser/sold', //卖出的商品
-  UserPage: ApiRootUrl + 'goodsUser/user', //用户主页
-  UserPageMore: ApiRootUrl + 'goodsUser/user/more', //用户主页更多
-  GoodsWant: ApiRootUrl + 'goodsUser/want', //把商品标记为想要
+  GetUserId: ApiRootUrl + 'user/getid',
+  CollectList: ApiRootUrl + 'goods/goodsUser/collect', //收藏列表
+  CollectAddOrDelete: ApiRootUrl + 'goods/goodsUser/collect/addordelete', //添加或取消收藏
+  PostedList: ApiRootUrl + 'goods/goodsUser/posted', //发布的商品
+  BoughtList: ApiRootUrl + 'goods/goodsUser/bought', //买过的商品
+  SoldList: ApiRootUrl + 'goods/goodsUser/sold', //卖出的商品
+  UserPage: ApiRootUrl + 'goods/goodsUser/user', //用户主页
+  UserPageMore: ApiRootUrl + 'goods/goodsUser/user/more', //用户主页更多
+  GoodsWant: ApiRootUrl + 'goods/goodsUser/want', //把商品标记为想要
 
   //认证
   AuthLoginByWeixin: ApiRootUrl + 'auth/loginByWeixin', //微信登录

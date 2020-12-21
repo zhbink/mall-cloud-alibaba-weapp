@@ -14,7 +14,7 @@
     </scroll-view>
     <scroll-view class="cate" scroll-y="true">
       <view class="banner">
-        <image class="image" src="https://image.flaticon.com/icons/svg/743/743007.svg"></image>
+        <image class="image" src="https://zhb1nk.oss-cn-beijing.aliyuncs.com/weapp/%E8%B4%AD%E7%89%A9%20%E7%A4%BC%E7%9B%92.svg"></image>
       </view>
       <view class="hd">
         <text class="line"></text>

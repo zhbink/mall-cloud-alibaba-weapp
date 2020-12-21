@@ -25,6 +25,7 @@ Page({
     replyUserName: '',
     page: 1,
     size: 10,
+    userId: -1,
     commentContent: '',
     onLoadOption: {},
     noCollectImage: "/static/images/detail_star.png",
@@ -33,7 +34,9 @@ Page({
   },
   getGoodsInfo: function() {
     let that = this;
-    util.request(api.GoodsDetail + '/' + that.data.id).then(function(res) {
+    if( wx.getStorageSync('userId'))
+      this.data.userId = wx.getStorageSync('userId');
+    util.request(api.GoodsDetail + '/' + that.data.id+'/'+that.data.userId).then(function(res) {
       if (res) {
         console.log(res);
         if (res.data.info.isDelete) {
@@ -105,7 +108,7 @@ Page({
   deleteGoods: function() {
     let that = this;
     util.request(api.GoodsDelete + '/' + that.data.id, {}, 'DELETE').then(function(res) {
-      if (res.errno === 0) {
+      if (res) {
 
         setTimeout(function goback() {
           wx.reLaunch({
@@ -121,6 +124,12 @@ Page({
       }
     });
 
+  },
+  
+  onClose() {
+    this.setData({
+      openDelete: false
+    })
   },
 
   onLoad: function(options) {
@@ -139,6 +148,25 @@ Page({
   },
   onShow: function() {
     // 页面显示
+    let userInfo = wx.getStorageSync('userInfo');
+    let token = wx.getStorageSync('token');
+
+  
+    // 页面显示
+    if (userInfo && token) {
+      let that = this;
+      util.request(api.GetUserId+'/'+token).then(function(res) {
+        if (res) {
+          wx.setStorageSync('userId', res);
+        }
+      });
+      app.globalData.userInfo = userInfo;
+      app.globalData.token = token;
+      this.setData({
+        isLogin: true
+      });
+      // console.log(wx.getStorageSync('userId'));
+    }
 
   },
   onHide: function() {
@@ -215,12 +243,12 @@ Page({
       util.showErrorToast('请填写内容')
       return false;
     }
-    util.request(api.CommentPost + '/' + this.data.id, {
+    util.request(api.CommentPost + '/' + this.data.id+'/'+wx.getStorageSync('userId'), {
       replyCommentId: this.data.replyId,
       replyUserId: this.data.replyUserId,
       content: event.detail.value
     }, "POST").then(function(res) {
-      if (res.errno === 0) {
+      if (res) {
         that.setData({
           commentContent: ''
         })
@@ -241,14 +269,17 @@ Page({
   addCannelCollect: function() {
     let that = this;
     user.checkLoginAndNav().then(() => {
-
-
       //添加或是取消收藏
-      util.request(api.CollectAddOrDelete + '/' + this.data.id + '/' + this.data.userHasCollect, {}, "POST")
+      let userHasCollectInt = this.data.userHasCollect?1:0;
+      console.log(typeof(this.data.id));
+      
+      util.request(api.CollectAddOrDelete+'/'+this.data.id+'/'+userHasCollectInt+'/'+wx.getStorageSync('userId')
+      ,{}, "POST")
         .then(function(res) {
+          console.log(res);
           let _res = res;
           let collectState = !that.data.userHasCollect;
-          if (_res.errno == 0) {
+          if (_res) {
             that.setData({
               userHasCollect: collectState
             });
@@ -257,10 +288,16 @@ Page({
               that.setData({
                 'collectBackImage': that.data.hasCollectImage
               });
+              wx.showToast({
+                title: '收藏成功'
+              })
             } else {
               that.setData({
                 'collectBackImage': that.data.noCollectImage
               });
+              wx.showToast({
+                title: '取消收藏成功'
+              })
             }
 
           } else {
