@@ -1,0 +1,35 @@
+version: "3"
+services:
+  gateway:
+    build: ./mall-gateway
+    container_name: gateway
+    restart: always
+    ports:
+      - "8080:8080"
+    external_links:
+      - nacos-standalone:nacos
+  goods-service:
+    build: ./mall-good
+    container_name: goods-service
+    restart: always
+    external_links:
+      - nacos-standalone:nacos
+      - mysql:db
+#    depends_on:
+#      - nacos
+#      - mysql
+
+
+
+
+
+#   mall-gateway:
+#     build: ./mall-gateway
+#     container_name: mall-gateway
+#     restart: always
+#     environment:
+#       - spring.cloud.nacos.discovery.server-addr=nacos:8848
+#       # - spring.cloud.nacos.config.server-addr=nacos-server:8848
+#     depends_on:
+#       - nacos
+#       - mysql
