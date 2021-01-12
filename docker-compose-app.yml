@@ -1,7 +1,7 @@
 version: "3"
 services:
   gateway:
-    build: ./mall-gateway
+    build: ./gateway
     container_name: gateway
     restart: always
     ports:
@@ -9,7 +9,7 @@ services:
     external_links:
       - nacos-standalone:nacos
   goods-service:
-    build: ./mall-good
+    build: ./goods-service
     container_name: goods-service
     restart: always
     external_links:
@@ -18,18 +18,17 @@ services:
 #    depends_on:
 #      - nacos
 #      - mysql
-
-
-
-
-
-#   mall-gateway:
-#     build: ./mall-gateway
-#     container_name: mall-gateway
-#     restart: always
-#     environment:
-#       - spring.cloud.nacos.discovery.server-addr=nacos:8848
-#       # - spring.cloud.nacos.config.server-addr=nacos-server:8848
-#     depends_on:
-#       - nacos
-#       - mysql
+  user-service:
+    build: ./user-service
+    container_name: user-service
+    restart: always
+    external_links:
+      - nacos-standalone:nacos
+      - mysql:db
+  auth-center:
+    build: ./auth-center
+    container_name: auth-center
+    restart: always
+    external_links:
+      - nacos-standalone:nacos
+      - mysql:db

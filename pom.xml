@@ -3,18 +3,18 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.micro.mall</groupId>
-    <artifactId>mall-seno</artifactId>
+    <groupId>com.micro</groupId>
+    <artifactId>micro-project</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <modules>
         <module>mall-mbg</module>
-        <module>mall-user</module>
-        <module>mall-gateway</module>
-        <module>mall-auth</module>
+        <module>user-service</module>
+        <module>gateway</module>
+        <module>auth-center</module>
         <module>mall-common</module>
-        <module>mall-good</module>
+        <module>goods-service</module>
     </modules>
 
     <parent>
@@ -49,12 +49,12 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.micro.mall</groupId>
+                <groupId>com.micro</groupId>
                 <artifactId>mall-mbg</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.micro.mall</groupId>
+                <groupId>com.micro</groupId>
                 <artifactId>mall-common</artifactId>
                 <version>${project.version}</version>
             </dependency>

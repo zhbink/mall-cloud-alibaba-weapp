@@ -1,0 +1,65 @@
+version: "3"
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./dev/mysql/conf:/etc/mysql/conf.d
+      - ./dev/mysql/data:/var/lib/mysql
+      #/dev/mysql/data为空(首次启动)时会执行/docker-entrypoint-initdb.d下的sql
+      #    - ./dev/mysql/dump/1_schema.sql:/docker-entrypoint-initdb.d/1_schema.sql  #只导入schema
+      - ./dev/mysql/dump:/docker-entrypoint-initdb.d  #schema+所有测试数据
+    restart: always
+  nacos:
+    image: nacos/nacos-server:latest
+    container_name: nacos-standalone
+    environment:
+      - MODE=standalone
+    ports:
+      - "8848:8848"
+  gateway:
+    build: ./gateway
+    container_name: gateway
+    restart: always
+    ports:
+      - "8080:8080"
+    external_links:
+      - nacos-standalone:nacos
+    depends_on:
+      - nacos
+  goods-service:
+    build: ./goods-service
+    container_name: goods-service
+    restart: always
+    external_links:
+      - nacos-standalone:nacos
+      - mysql:db
+    depends_on:
+      - nacos
+      - mysql
+  user-service:
+    build: ./user-service
+    container_name: user-service
+    restart: always
+    external_links:
+      - nacos-standalone:nacos
+      - mysql:db
+    depends_on:
+      - nacos
+      - mysql
+  auth-center:
+    build: ./auth-center
+    container_name: auth-center
+    restart: always
+    external_links:
+      - nacos-standalone:nacos
+      - mysql:db
+    depends_on:
+      - nacos
+      - mysql
