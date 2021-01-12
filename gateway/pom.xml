@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
 
     <name>gateway</name>
-    <description>mall-gateway project for mall</description>
+    <description>gateway</description>
 
     <parent>
         <artifactId>micro-project</artifactId>

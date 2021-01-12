@@ -32,11 +32,11 @@
     <dependencies>
         <dependency>
             <groupId>com.micro</groupId>
-            <artifactId>mall-common</artifactId>
+            <artifactId>common</artifactId>
         </dependency>
         <dependency>
             <groupId>com.micro</groupId>
-            <artifactId>mall-mbg</artifactId>
+            <artifactId>mbg</artifactId>
         </dependency>
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
