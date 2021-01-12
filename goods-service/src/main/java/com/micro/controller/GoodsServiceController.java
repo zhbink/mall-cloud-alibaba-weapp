@@ -22,7 +22,7 @@ import java.util.Map;
  */
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @RestController
-@RequestMapping("/goods-service")
+@RequestMapping("/goods")
 @Slf4j
 public class GoodsServiceController {
     private  final GoodsServiceMapper goodsServiceMapper;

@@ -1,3 +1,5 @@
+server:
+  port: 8003
 spring:
   datasource:
     # 当前数据源操作类型

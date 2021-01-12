@@ -1,7 +1,7 @@
 var util = require('./utils/util.js');
 var api = require('./config/api.js');
 var user = require('./services/user.js');
-var websocket = require('./services/websocket.js');
+// var websocket = require('./services/websocket.js');
 
 var SocketTask
 
@@ -29,10 +29,10 @@ App({
 
   },
   onShow:function(){
-    websocket.wsConnect()
+    // websocket.wsConnect()
   },
   onHide: function() {
-    websocket.wsClose()
+    // websocket.wsClose()
   },
 
 
@@ -43,10 +43,10 @@ App({
       avatarUrl: 'https://zhb1nk.oss-cn-beijing.aliyuncs.com/weapp/u%3D2860640912%2C1833965317%26fm%3D26%26gp%3D0.jpg'
     },
     token: '',
-    websocket: {
-      socketOpen: false,
-      changeBadge: true,
-    },
+    // websocket: {
+    //   socketOpen: false,
+    //   changeBadge: true,
+    // },
     appid: 'wxe59f8a6e001da64c',
   },
   testData: {

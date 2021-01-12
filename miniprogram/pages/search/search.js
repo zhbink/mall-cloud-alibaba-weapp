@@ -25,7 +25,7 @@ Page({
     });
   },
   onLoad: function() {
-    this.getSearchKeyword();
+    // this.getSearchKeyword();
   },
 
   getSearchKeyword() {

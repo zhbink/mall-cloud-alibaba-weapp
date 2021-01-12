@@ -20,15 +20,15 @@ Page({
   },
   onShow: function() {
     // 页面显示
-    let now = new Date();
-    this.setData({
-      offsetTime: now.toISOString(),
-      chatList: []
-    })
-    if (wx.getStorageSync('token')) {
-      this.getChatList();
-      this.openListen();
-    }
+    // let now = new Date();
+    // this.setData({
+    //   offsetTime: now.toISOString(),
+    //   chatList: []
+    // })
+    // if (wx.getStorageSync('token')) {
+    //   this.getChatList();
+    //   this.openListen();
+    // }
   },
   onHide: function() {
     // 页面隐藏
