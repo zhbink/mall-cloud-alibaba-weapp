@@ -8,7 +8,7 @@ services:
       - MYSQL_USER=user
       - MYSQL_PASSWORD=password
     ports:
-      - "3306:3306"
+      - 3306:3306
     volumes:
       - ./dev/mysql/conf:/etc/mysql/conf.d
       - ./dev/mysql/data:/var/lib/mysql
@@ -23,8 +23,49 @@ services:
     environment:
       - MODE=standalone
     ports:
-      - "8848:8848"
+      - 8848:8848
 
+  sentinel:
+    build: ./dev/sentinel
+    container_name: sentinel-dashboard
+    ports:
+      - 8858:8858
 
-volumes:
-  mysql-data: {}
+  rmqnamesrv:
+    image: foxiswho/rocketmq:server
+    container_name: rmqnamesrv
+    ports:
+      - 9876:9876
+    volumes:
+      - ./data/logs:/opt/logs
+      - ./data/store:/opt/store
+
+  rmqbroker:
+    image: foxiswho/rocketmq:broker
+    container_name: rmqbroker
+    ports:
+      - 10909:10909
+      - 10911:10911
+    volumes:
+      - ./dev/rmq/logs:/opt/logs
+      - ./dev/rmq/store:/opt/store
+      - ./dev/rmq/broker.conf:/etc/rocketmq/broker.conf
+    environment:
+      NAMESRV_ADDR: "rmqnamesrv:9876"
+      JAVA_OPTS: " -Duser.home=/opt"
+      JAVA_OPT_EXT: "-server -Xms128m -Xmx128m -Xmn128m"
+    command: mqbroker -c /etc/rocketmq/broker.conf
+    depends_on:
+      - rmqnamesrv
+
+  rmqconsole:
+    image: styletang/rocketmq-console-ng
+    container_name: rmqconsole
+    ports:
+      - 9090:9090
+    volumes:
+      - ./dev/Shanghai:/etc/localtime
+    environment:
+      JAVA_OPTS: "-Dserver.port=9090 -Drocketmq.namesrv.addr=rmqnamesrv:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false -Duser.timezone='Shanghai'"
+    depends_on:
+      - rmqnamesrv

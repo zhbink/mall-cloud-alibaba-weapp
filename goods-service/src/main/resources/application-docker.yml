@@ -7,3 +7,25 @@ spring:
     url: jdbc:mysql://db:3306/goods_service?useUnicode=true&characterEncoding=UTF-8&useSSL=false
     username: root
     password: 1234
+  cloud:
+    sentinel:
+      transport:
+        port: 8712
+        dashboard: sentinel:8858
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+info:
+  app-name: goods-service
+  author: zhb1nk&sux111
+  email: zhbink@163.com
+
+rocketmq:
+  name-server: rmqnamesrv:9876
+  producer:
+    group: my-group

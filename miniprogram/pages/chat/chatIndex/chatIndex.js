@@ -1,6 +1,6 @@
 var util = require('../../../utils/util.js');
 var api = require('../../../config/api.js');
-var websocket = require('../../../services/websocket.js');
+// var websocket = require('../../../services/websocket.js');
 
 var app = getApp();
 
@@ -32,7 +32,7 @@ Page({
   },
   onHide: function() {
     // 页面隐藏
-    websocket.listenBadge()
+    // websocket.listenBadge()
 
   },
   onUnload: function() {
@@ -40,21 +40,21 @@ Page({
 
   },
   getChatList: function() {
-    let that = this;
-    util.request(api.ChatIndex, {
-      size: this.data.size,
-      offsetTime: this.data.offsetTime
-    }).then(function(res) {
-      if (res.errno === 0) {
-        console.log(res.data);
-        that.setData({
-          chatList: that.data.chatList.concat(res.data.chats),
-          offsetTime: res.data.offsetTime
-        });
-      } else {
-        console.log(res)
-      }
-    })
+    // let that = this;
+    // util.request(api.ChatIndex, {
+    //   size: this.data.size,
+    //   offsetTime: this.data.offsetTime
+    // }).then(function(res) {
+    //   if (res.errno === 0) {
+    //     console.log(res.data);
+    //     that.setData({
+    //       chatList: that.data.chatList.concat(res.data.chats),
+    //       offsetTime: res.data.offsetTime
+    //     });
+    //   } else {
+    //     console.log(res)
+    //   }
+    // })
   },
   navForm: function(e) {
     var chatId = e.currentTarget.dataset.id
@@ -63,7 +63,7 @@ Page({
 
     //减少tapbar的badge
     var lessBadge = chatList[index].unreadCount
-    websocket.lessBadge(lessBadge)
+    // websocket.lessBadge(lessBadge)
 
     //减少列表用户的badge
     chatList[index].unreadCount = 0
@@ -77,41 +77,41 @@ Page({
 
   },
   openListen: function() {
-    let that = this
-    websocket.listenChatIndex().then(res => {
-      console.log("chatIndex监听到消息:" + res)
+    // let that = this
+    // websocket.listenChatIndex().then(res => {
+    //   console.log("chatIndex监听到消息:" + res)
 
-      //ws监听到新消息,加入当前列表中
-      let chatList = this.data.chatList
-      for (var i in chatList) {
-        //存在与目前list中
-        if (chatList[i].lastChat.chatId == res.chatId) {
-          var target = chatList[i]
-          var newChatList = []
+    //   //ws监听到新消息,加入当前列表中
+    //   let chatList = this.data.chatList
+    //   for (var i in chatList) {
+    //     //存在与目前list中
+    //     if (chatList[i].lastChat.chatId == res.chatId) {
+    //       var target = chatList[i]
+    //       var newChatList = []
 
 
-          target.unreadCount++;
-          target.u1ToU2 = res.senderId < res.receiverId ? true : false
-          target.lastChat.messageType = res.messageType
-          target.lastChat.messageBody = res.messageBody
-          target.lastChat.sendTime = res.sendTime
+    //       target.unreadCount++;
+    //       target.u1ToU2 = res.senderId < res.receiverId ? true : false
+    //       target.lastChat.messageType = res.messageType
+    //       target.lastChat.messageBody = res.messageBody
+    //       target.lastChat.sendTime = res.sendTime
 
-          chatList.splice(i, 1);
-          console.log(chatList)
+    //       chatList.splice(i, 1);
+    //       console.log(chatList)
 
-          newChatList.push(target)
-          newChatList = newChatList.concat(chatList)
+    //       newChatList.push(target)
+    //       newChatList = newChatList.concat(chatList)
 
-          that.setData({
-            chatList: newChatList
-          })
-          that.openListen()
-          return
-        }
-      }
-      //不存在, 后端可以专门写个api
-      that.onShow()
-    })
+    //       that.setData({
+    //         chatList: newChatList
+    //       })
+    //       that.openListen()
+    //       return
+    //     }
+    //   }
+    //   //不存在, 后端可以专门写个api
+    //   that.onShow()
+    // })
   },
   onPullDownRefresh: function() {
     console.log("上拉刷新")

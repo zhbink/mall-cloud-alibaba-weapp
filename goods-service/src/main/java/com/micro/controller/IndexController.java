@@ -10,6 +10,7 @@ import com.micro.mbg.model.Category;
 import com.micro.mbg.model.Goods;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +25,7 @@ import java.util.List;
 public class IndexController {
     private final IndexService indexService;
     private final GoodsMapper goodsMapper;
+    private final RocketMQTemplate rocketMQTemplate;
 
     @GetMapping("/index/index")
     public CommonResult<IndexPageVo> index(@RequestParam(value = "page", defaultValue = "1") int page,
@@ -32,6 +34,10 @@ public class IndexController {
 
         IndexPageVo vo = indexService.getIndex(page, size);
 //        log.info("浏览首页 : 展示{}个广告, {}个分类, {}个商品", vo.getBanner().size(), vo.getChannel().size(), vo.getIndexGoodsList().size());
+        rocketMQTemplate.convertAndSend(
+                "add-bonus",
+                50
+        );
         return new CommonResult(vo);
     }
 

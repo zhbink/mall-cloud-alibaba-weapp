@@ -11,6 +11,23 @@ spring:
     default-property-inclusion: ALWAYS
     time-zone: GMT+8
     date-format: yyyy-MM-dd
+  cloud:
+    sentinel:
+      transport:
+        port: 8711
+        dashboard: sentinel:8858
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+info:
+  app-name: goods-service
+  author: zhb1nk&sux111
+  email: zhbink@163.com
 
 #logging:
 #  level:

@@ -1,5 +1,3 @@
-server:
-  port: 8001
 spring:
   application:
     # 服务名称尽量用-，不要用_，不要用特殊字符
@@ -8,6 +6,10 @@ spring:
     nacos:
       discovery:
         server-addr: localhost:8848
+    sentinel:
+      transport:
+        port: 8711
+        dashboard: localhost:8858
   datasource:
     # 当前数据源操作类型
     type: com.alibaba.druid.pool.DruidDataSource
@@ -46,3 +48,17 @@ wx:
 #        aesKey: #微信小程序消息服务器配置的EncodingAESKey
         msgDataFormat: JSON
 appid: wxe59f8a6e001da64c
+
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+info:
+  app-name: goods-service
+  author: zhb1nk&sux111
+  email: zhbink@163.com

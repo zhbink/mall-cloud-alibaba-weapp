@@ -1,5 +1,3 @@
-// const ApiRootUrl = 'https://01bcd133.ngrok.io/';
-// const WebSocktUrl = 'ws://f5763704.ngrok.io/'
 const ApiRootUrl = 'http://192.168.0.107:8080/';
 const WebSocktUrl = 'ws://127.0.0.1:8805/';
 

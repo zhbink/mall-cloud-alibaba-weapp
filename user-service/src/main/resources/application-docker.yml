@@ -7,3 +7,20 @@ spring:
     url: jdbc:mysql://db:3306/user_service?useUnicode=true&characterEncoding=UTF-8&useSSL=false
     username: root
     password: 1234
+  cloud:
+    sentinel:
+      transport:
+        port: 8713
+        dashboard: sentinel:8858
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+info:
+  app-name: goods-service
+  author: zhb1nk&sux111
+  email: zhbink@163.com

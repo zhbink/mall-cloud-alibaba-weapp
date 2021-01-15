@@ -29,15 +29,15 @@ Page({
   },
 
   getSearchKeyword() {
-    let that = this;
-    util.request(api.SearchIndex).then(function(res) {
-      if (res) {
-        that.setData({
-          historyKeyword: res.data.historyKeywordList,
-          hotKeyword: res.data.hotKeywordList
-        });
-      }
-    });
+    // let that = this;
+    // util.request(api.SearchIndex).then(function(res) {
+    //   if (res) {
+    //     that.setData({
+    //       historyKeyword: res.data.historyKeywordList,
+    //       hotKeyword: res.data.hotKeywordList
+    //     });
+    //   }
+    // });
   },
 
   inputChange: function(e) {

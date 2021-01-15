@@ -1,5 +1,3 @@
-server:
-  port: 8003
 spring:
   datasource:
     # 当前数据源操作类型
@@ -15,3 +13,20 @@ spring:
     nacos:
       discovery:
         server-addr: localhost:8848
+    sentinel:
+      transport:
+        port: 8713
+        dashboard: localhost:8858
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+info:
+  app-name: goods-service
+  author: zhb1nk&sux111
+  email: zhbink@163.com

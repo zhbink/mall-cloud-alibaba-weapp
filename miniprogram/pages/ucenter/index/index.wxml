@@ -40,7 +40,7 @@
         <text class="txt">我的收藏</text>
       </navigator>
     </view>
-    <view class="item no-border">
+    <!-- <view class="item no-border">
       <navigator url="/pages/undone/undone" class="a">
         <text class="icon order"></text>
         <text class="txt">我的订单</text>
@@ -51,7 +51,7 @@
         <text class="icon map"></text>
         <text class="txt">地址管理</text>
       </navigator>
-    </view>
+    </view> -->
 
   </view>
 
